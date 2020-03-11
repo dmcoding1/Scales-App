@@ -1,0 +1,157 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Scales App</title>
+  <meta name="description" content="App displays notes, chords with keyboard and guitar sounds of selected music scale.">
+  <link rel="stylesheet" href="/style.css">
+  <link rel="apple-touch-icon" sizes="180x180" href="/icons/apple-touch-icon.png">
+  <link rel="icon" href="/icons/favicon.ico?v=1.1">
+  <link rel="icon" type="image/png" sizes="32x32" href="/icons/favicon-32x32.png">
+  <link rel="icon" type="image/png" sizes="16x16" href="/icons/favicon-16x16.png">
+  <link rel="manifest" href="/site.webmanifest">
+</head>
+<body class="loading">
+  <header class="header-text">
+    <h1>Select your scale</h1>
+  </header>
+  <main class="wrapper">
+    <div id="pointer"></div>
+    <section class="circle" id="jCircle">
+      <div class="circle-items">
+        <span class="circle-item">C</span>
+        <span class="circle-item">C#</span>
+        <span class="circle-item">D</span>
+        <span class="circle-item">D#</span>
+        <span class="circle-item">E</span>
+        <span class="circle-item">F</span>
+        <span class="circle-item">F#</span>
+        <span class="circle-item">G</span>
+        <span class="circle-item">G#</span>
+        <span class="circle-item">A</span>
+        <span class="circle-item">A#</span>
+        <span class="circle-item">B</span>
+      </div>
+    </section>
+    <div class="scale-btns">      
+      <button class="btn btn-maj btn-pressed">Major</button>   
+      <button class="btn btn-min">Minor</button>   
+    </div>
+    <div>
+      <span class="text-output"></span>
+    </div>
+    <div>
+      <span class="chords-output"></span>
+    </div>
+    <div>
+      <span class="piano-text"><span class="heading">Check this scale notes on piano</span>(you can play the notes with a-w-s-e-d-f-t-g-y-h on your keyboard)</span>
+    </div>
+    
+    <section class="keyboard disable-select">
+      <span class="key" id="C"></span>
+      <span class="key key-half" id="C#"></span>
+      <span class="key" id="D"></span>
+      <span class="key key-half" id="D#"></span>
+      <span class="key" id="E"></span>
+      <span class="key" id="F"></span>
+      <span class="key key-half" id="F#"></span>
+      <span class="key" id="G"></span>
+      <span class="key key-half" id="G#"></span>
+      <span class="key" id="A"></span>
+      <span class="key key-half" id="A#"></span>
+      <span class="key" id="B"></span>   
+
+    </section>
+    
+    <button class="btn clear-btn disable-select" id="btn-piano">Clear keyboard</button>
+    
+    <div>
+      <span class="guitar-text heading">Check this scale notes on guitar</span>
+    </div>
+    
+    <section class="guitar">
+      <div class="guitar-neck">
+      <div class="guitar-frets-nums">
+        <span class="guitar-fret-num">0</span>
+        <span class="guitar-fret-num">1</span>
+        <span class="guitar-fret-num">2</span>
+        <span class="guitar-fret-num">3</span>
+        <span class="guitar-fret-num">4</span>
+      </div>
+      <div class="guitar-frets">
+        <div class="guitar-fret"></div>
+        <div class="guitar-fret"></div>
+        <div class="guitar-fret"></div>
+        <div class="guitar-fret"></div>
+        <div class="guitar-fret"></div>
+        <div class="guitar-fret"></div>
+      </div>   
+    
+      <div class="guitar-strings-names">
+        <span class="string-names">E B G D A E</span>
+      </div>
+      
+      <div class="guitar-strings">
+        <div class="guitar-string"></div>
+        <div class="guitar-string"></div>
+        <div class="guitar-string"></div>
+        <div class="guitar-string"></div>
+        <div class="guitar-string"></div>
+        <div class="guitar-string"></div>      
+      </div>
+      
+      <div class="picked-notes">
+        <div class="picked-string string-picks">
+          <span class="note e" id='e1'></span>
+          <span class="note f" id='f1'></span>
+          <span class="note f#" id='f#1'></span>
+          <span class="note g" id='g1'></span>
+          <span class="note g#" id='g#1'></span>
+        </div>
+        <div class="picked-string string-picks">
+          <span class="note b" id='b1'></span>
+          <span class="note c" id='c1'></span>
+          <span class="note c#" id='c#1'></span>
+          <span class="note d" id='d1'></span>
+          <span class="note d#" id='d#1'></span>
+        </div>
+        <div class="picked-string string-picks">
+          <span class="note g" id='g2'></span>
+          <span class="note g#" id='g#2'></span>
+          <span class="note a" id='a1'></span>
+          <span class="note a#" id='a#1'></span>
+          <span class="note b" id='b2'></span>
+        </div>
+        <div class="picked-string string-picks">
+          <span class="note d" id='d2'></span>
+          <span class="note d#" id='d#2'></span>
+          <span class="note e" id='e2'></span>
+          <span class="note f" id='f2'></span>
+          <span class="note f#" id='f#2'></span>
+        </div>
+        <div class="picked-string string-picks">
+          <span class="note a" id='a2'></span>
+          <span class="note a#" id='a#2'></span>
+          <span class="note b" id='b3'></span>
+          <span class="note c" id='c2'></span>
+          <span class="note c#" id="c#2"></span>
+        </div>
+        <div class="picked-string string-picks">
+          <span class="note e" id='e3'></span>
+          <span class="note f" id='f3'></span>
+          <span class="note f#" id='f#3'></span>
+          <span class="note g" id='g3'></span>
+          <span class="note g#" id="g#3"></span>
+        </div>
+      </div>
+      
+    </div>
+      <button class="btn clear-btn disable-select" id="btn-guitar">Clear frets</button>
+  </section>
+    
+  </main>
+  <footer class="footer">&copy; Scales 2019</footer>
+  <script src="main.js"></script>
+</body>
+</html>
