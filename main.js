@@ -2,8 +2,73 @@ window.ondragstart = function() {
   return false;
 };
 
-window.onload = () => {
-  
+window.onload = () => {  
+
+  const guitarNotes = {
+    'e1': '/sounds/guitar/e1.wav',
+    'a#2': '/sounds/guitar/a_2.wav',
+    'a#1': '/sounds/guitar/a_1.wav',
+    'a1': '/sounds/guitar/a1.wav',
+    'a2': '/sounds/guitar/a2.wav',
+    'b1': '/sounds/guitar/b1.wav',
+    'b2': '/sounds/guitar/b1.wav',
+    'b3': '/sounds/guitar/b3.wav',
+    'c#1': '/sounds/guitar/c_1.wav',
+    'c#2': '/sounds/guitar/c_2.wav',
+    'c1': '/sounds/guitar/c1.wav',
+    'c2': '/sounds/guitar/c2.wav',
+    'd#1': '/sounds/guitar/d_1.wav',
+    'd#2': '/sounds/guitar/d_2.wav',
+    'd1': '/sounds/guitar/d1.wav',
+    'd2': '/sounds/guitar/d2.wav',
+    'e2': '/sounds/guitar/e2.wav',
+    'e3': '/sounds/guitar/e3.wav',
+    'f#1': '/sounds/guitar/f_1.wav',
+    'f#2': '/sounds/guitar/f_2.wav',
+    'f#3': '/sounds/guitar/f_3.wav',
+    'f1': '/sounds/guitar/f1.wav',
+    'f2': '/sounds/guitar/f2.wav',
+    'f3': '/sounds/guitar/f3.wav',
+    'g#1': '/sounds/guitar/g_1.wav',
+    'g#2': '/sounds/guitar/g_2.wav',
+    'g#3': '/sounds/guitar/g_3.wav',
+    'g1': '/sounds/guitar/g1.wav',
+    'g2': '/sounds/guitar/g2.wav',
+    'g3': '/sounds/guitar/g3.wav'
+  };
+
+  const sounds = [
+    ...Object.values(guitarNotes),
+    '/sounds/piano/040.wav',
+    '/sounds/piano/041.wav',
+    '/sounds/piano/042.wav',
+    '/sounds/piano/043.wav',
+    '/sounds/piano/044.wav',
+    '/sounds/piano/045.wav',
+    '/sounds/piano/046.wav',
+    '/sounds/piano/047.wav',
+    '/sounds/piano/048.wav',
+    '/sounds/piano/049.wav',
+    '/sounds/piano/050.wav',
+    '/sounds/piano/051.wav'  
+  ];
+
+  Promise.all(
+    sounds.map(sound => {
+      return new Promise((resolve, reject) => {
+        const audio = new Audio();
+        audio.addEventListener('canplaythrough', resolve);
+        audio.src = sound;
+      })
+    })
+  ).then(() => {
+    document.body.classList.remove("loading");
+    console.log("Success.");
+  }).catch(err => {
+    document.body.classList.add("error");
+    console.error(err);
+  });
+
   const notes = document.querySelectorAll('.circle-item');
   const circle = document.getElementById('jCircle');
   const scaleOutput = document.querySelector('.text-output');
@@ -15,7 +80,6 @@ window.onload = () => {
   const guitarNotesArr = Array.from(document.getElementsByClassName('note'));
   const pianoBtn = document.querySelector('#btn-piano');
   const guitarBtn = document.querySelector('#btn-guitar');
-
 
   const majorScales = {
     'C': {
@@ -145,56 +209,7 @@ window.onload = () => {
     'h': 'A',
     'u': 'A#',
     'j': 'B'  
-  };
-
-  const guitarNotes = {
-    'e1': '/sounds/guitar/e1.wav',
-    'a#2': '/sounds/guitar/a_2.wav',
-    'a#1': '/sounds/guitar/a_1.wav',
-    'a1': '/sounds/guitar/a1.wav',
-    'a2': '/sounds/guitar/a2.wav',
-    'b1': '/sounds/guitar/b1.wav',
-    'b2': '/sounds/guitar/b1.wav',
-    'b3': '/sounds/guitar/b3.wav',
-    'c#1': '/sounds/guitar/c_1.wav',
-    'c#2': '/sounds/guitar/c_2.wav',
-    'c1': '/sounds/guitar/c1.wav',
-    'c2': '/sounds/guitar/c2.wav',
-    'd#1': '/sounds/guitar/d_1.wav',
-    'd#2': '/sounds/guitar/d_2.wav',
-    'd1': '/sounds/guitar/d1.wav',
-    'd2': '/sounds/guitar/d2.wav',
-    'e2': '/sounds/guitar/e2.wav',
-    'e3': '/sounds/guitar/e3.wav',
-    'f#1': '/sounds/guitar/f_1.wav',
-    'f#2': '/sounds/guitar/f_2.wav',
-    'f#3': '/sounds/guitar/f_3.wav',
-    'f1': '/sounds/guitar/f1.wav',
-    'f2': '/sounds/guitar/f2.wav',
-    'f3': '/sounds/guitar/f3.wav',
-    'g#1': '/sounds/guitar/g_1.wav',
-    'g#2': '/sounds/guitar/g_2.wav',
-    'g#3': '/sounds/guitar/g_3.wav',
-    'g1': '/sounds/guitar/g1.wav',
-    'g2': '/sounds/guitar/g2.wav',
-    'g3': '/sounds/guitar/g3.wav'
-  };
-
-  const sounds = [
-    ...Object.values(guitarNotes),
-    '/sounds/piano/040.wav',
-    '/sounds/piano/041.wav',
-    '/sounds/piano/042.wav',
-    '/sounds/piano/043.wav',
-    '/sounds/piano/044.wav',
-    '/sounds/piano/045.wav',
-    '/sounds/piano/046.wav',
-    '/sounds/piano/047.wav',
-    '/sounds/piano/048.wav',
-    '/sounds/piano/049.wav',
-    '/sounds/piano/050.wav',
-    '/sounds/piano/051.wav'  
-  ];
+  };  
 
   const minBtn = document.querySelector('.btn-min');
 
@@ -202,23 +217,7 @@ window.onload = () => {
 
   majBtn.classList.contains('btn-pressed') ? 
       scaleNotes = [majorScales[notesArr[0]][keyNames[0]], majorScales[notesArr[0]][keyNames[1]]] :
-      scaleNotes = [minorScales[notesArr[0]][keyNames[0]], minorScales[notesArr[0]][keyNames[1]]]; 
-
-  // preload all sounds
-  Promise.all(
-    sounds.map(sound => {
-      return new Promise((resolve, reject) => {
-        const audio = new Audio();
-        // once this file loads, it will call loadedAudio()
-        // the file will be kept by the browser as cache
-        audio.addEventListener('canplaythrough', resolve);
-        audio.src = sound;
-      })
-    })
-  ).then(() => {
-    document.body.classList.remove("loading");
-    console.log("Success.");
-  }).catch(err => console.error(err));
+      scaleNotes = [minorScales[notesArr[0]][keyNames[0]], minorScales[notesArr[0]][keyNames[1]]];  
   
   Array.from(notes).forEach(element => {
      element.addEventListener('click', rotateCircle);
@@ -247,8 +246,6 @@ window.onload = () => {
   guitarBtn.addEventListener('click', releaseStrings);
 
   handleScaleChange();
-
-  // document.body.classList.remove("loading");
 
   animateString();
   
@@ -317,7 +314,6 @@ window.onload = () => {
       chordProgressions.push([chords[0], chords[5], chords[6]], [chords[0], chords[3], chords[6]], [chords[0], chords[3], chords[4]], [chords[0], chords[5], chords[2], chords[6]], [chords[1], chords[4], chords[0]]);
     }
 
-
     let output = document.querySelector('.chords-output');
 
     let listItems = [];
@@ -325,12 +321,10 @@ window.onload = () => {
       listItems.push(`<li class="chord-progression">${chordProgressions[i].join(' - ')}</li>`);
     };
 
-
     output.innerHTML = `<span class="heading">Chords in this scale:</span> ${chords.join(', ')} <span class="heading">Common chord progressions:</span>
       <ul>
         ${listItems.join('')}
       </ul>`;
-
   }
 
   function pressKeys() {
@@ -384,7 +378,7 @@ window.onload = () => {
       let audio = new Audio(`/sounds/piano/0${urlForNotes[soundName]}.wav`);
       audio.play();
       keysArr.forEach(element => {
-        if (element.getAttribute('id') == soundName) {
+        if (element.id == soundName) {
           element.classList.add('on-left-button');
         }
       })
@@ -422,7 +416,6 @@ window.onload = () => {
     }
 
     pressedStrings.forEach(element => element.classList.add('picked-note'));
-
   }
 
   function releaseStrings() {
@@ -436,7 +429,6 @@ window.onload = () => {
       audio.play();
       e.target.classList.add('on-left-button');
     }
-
   }
 
   function detectLeftButton(event) {
@@ -479,7 +471,6 @@ window.onload = () => {
         let stringIndex = pickedStrings.indexOf(e.target.parentNode);
         strings[stringIndex].classList.remove('string-animation');    
 
-        // triggers animation restart
         void string.offsetWidth;
 
         strings[stringIndex].classList.add('string-animation');
@@ -487,7 +478,6 @@ window.onload = () => {
      }                                                  
     )
    );
-
   }
 
   function handleScaleChange() {
@@ -499,8 +489,7 @@ window.onload = () => {
     pressStrings();
     displayGuitar();
     generateChords();
-  }
-  
+  } 
   
 }
 
