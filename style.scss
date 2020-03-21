@@ -148,30 +148,10 @@ body {
       }
     }
 
-    .circle {
+    .circle, .text-container, .keyboard, .guitar, .btn, .text-output, .chords-output {
       animation: none;
     }
 
-    .text-container {
-      animation: none;
-    }
-
-    .keyboard {
-      animation: none;
-    }
-
-    .guitar {
-      animation: none;
-    }
-
-    .btn {
-      animation: none;
-      pointer-events: none;
-    }
-
-    .heading {
-      animation: none;
-    }
   }
 
   &.error {
@@ -403,8 +383,6 @@ body {
   margin: 2rem auto;
   width: 100%;
   font-size: 2.4rem;
-  opacity: 0;
-  animation: appear 1s $animation-time ease forwards; 
 }
 
 .chord-progression {
@@ -565,8 +543,6 @@ $fret-line-weight: 0.3rem;
   margin-bottom: 0.5rem;
   font-size: 3rem;
   text-transform: uppercase;
-  opacity: 0;
-  animation: appear 1s $animation-time ease forwards; 
 }
 
 .string-animation {

@@ -190,33 +190,7 @@ body.loading .loader__item::after {
   }
 }
 
-body.loading .circle {
-  -webkit-animation: none;
-          animation: none;
-}
-
-body.loading .text-container {
-  -webkit-animation: none;
-          animation: none;
-}
-
-body.loading .keyboard {
-  -webkit-animation: none;
-          animation: none;
-}
-
-body.loading .guitar {
-  -webkit-animation: none;
-          animation: none;
-}
-
-body.loading .btn {
-  -webkit-animation: none;
-          animation: none;
-  pointer-events: none;
-}
-
-body.loading .heading {
+body.loading .circle, body.loading .text-container, body.loading .keyboard, body.loading .guitar, body.loading .btn, body.loading .text-output, body.loading .chords-output {
   -webkit-animation: none;
           animation: none;
 }
@@ -535,9 +509,6 @@ body.error .error-msg {
   margin: 2rem auto;
   width: 100%;
   font-size: 2.4rem;
-  opacity: 0;
-  -webkit-animation: appear 1s 1s ease forwards;
-          animation: appear 1s 1s ease forwards;
 }
 
 .chord-progression {
@@ -717,9 +688,6 @@ body.error .error-msg {
   margin-bottom: 0.5rem;
   font-size: 3rem;
   text-transform: uppercase;
-  opacity: 0;
-  -webkit-animation: appear 1s 1s ease forwards;
-          animation: appear 1s 1s ease forwards;
 }
 
 .string-animation {

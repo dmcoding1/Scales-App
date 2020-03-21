@@ -53,8 +53,13 @@ window.onload = () => {
     '/sounds/piano/051.wav'  
   ];
 
+  let time = new Date();
+
   Promise.all(
     sounds.map(sound => {
+      if (new Date().getTime() - time > 4000) {
+        document.body.classList.add("error");
+      }
       return new Promise((resolve, reject) => {
         const audio = new Audio();
         audio.addEventListener('canplaythrough', resolve);
@@ -70,7 +75,7 @@ window.onload = () => {
   });
 
   const notes = document.querySelectorAll('.circle-item');
-  const circle = document.getElementById('jCircle');
+  const circle = document.getElementById('circle');
   const scaleOutput = document.querySelector('.text-output');
   const pickedStrings = Array.from(document.getElementsByClassName('picked-string'));
   let circleAngle = 0;
@@ -222,6 +227,8 @@ window.onload = () => {
   Array.from(notes).forEach(element => {
      element.addEventListener('click', rotateCircle);
    });
+
+  circle.addEventListener("transitionend", handleScaleChange);
   
   minBtn.addEventListener('click', makeMinScales);
   majBtn.addEventListener('click', makeMajScales);
@@ -240,8 +247,10 @@ window.onload = () => {
     element.addEventListener('mouseover', onMouseOver);
     element.addEventListener('mouseout', onMouseOut);
   });
+
   window.addEventListener('keydown', playKeyNoteWithKey);
   window.addEventListener('keyup', onKeyUp);
+
   pianoBtn.addEventListener('click', releaseKeys);
   guitarBtn.addEventListener('click', releaseStrings);
 
@@ -249,8 +258,8 @@ window.onload = () => {
 
   animateString();
   
-  function rotateCircle(event) {
-    const target = event.target;
+  function rotateCircle(e) {
+    const target = e.target;
     const targetValue = target.textContent;
     const noteIndex = notesArr.indexOf(targetValue);
     let rotateAngle = anglesArr[noteIndex];
@@ -263,7 +272,6 @@ window.onload = () => {
     notesArr = [...notesArr.slice(noteIndex), ...notesArr.slice(0, noteIndex)];
     keyNames = Object.keys(majorScales[notesArr[0]]);  
 
-    handleScaleChange();
   }
 
   function makeMinScales() {
@@ -372,7 +380,7 @@ window.onload = () => {
   }
 
   function playKeyNoteWithKey(e) {
-    if (e.repeat) { return }; // preventing multiple sounds on held key
+    if (e.repeat) return; // preventing multiple sounds on held key
     let soundName = pianoKeyCodes[e.key.toString()];
     if (Object.keys(pianoKeyCodes).includes(e.key.toString())) {
       let audio = new Audio(`/sounds/piano/0${urlForNotes[soundName]}.wav`);
@@ -431,15 +439,15 @@ window.onload = () => {
     }
   }
 
-  function detectLeftButton(event) {
-      if (event.metaKey || event.ctrlKey || event.altKey || event.shiftKey) {
+  function detectLeftButton(e) {
+      if (e.metaKey || e.ctrlKey || e.altKey || e.shiftKey) {
           return false;        
-      } else if ('buttons' in event) {
+      } else if ('buttons' in e) {
           return event.buttons === 1;    
-      } else if ('which' in event) {
-          return event.which === 1; 
+      } else if ('which' in e) {
+          return e.which === 1; 
       } else {   
-        return (event.button == 1 || event.type == 'click');      
+        return (e.button == 1 || e.type == 'click');      
       }
   }
 
