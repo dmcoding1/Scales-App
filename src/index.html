@@ -1,6 +1,7 @@
 <!DOCTYPE html>
 <html lang="en">
   <head>
+    <style>html { background-color: #fcefef;} html * { opacity: 0; visibility: hidden;} </style>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Scales App</title>
@@ -8,13 +9,13 @@
       name="description"
       content="App displays notes, chords with keyboard and guitar sounds of selected music scale."
     />
-    <link rel="stylesheet" href="/style.css" />
+    <link rel="manifest" href="manifest.json">
     <link
       rel="apple-touch-icon"
       sizes="180x180"
       href="/icons/apple-touch-icon.png"
     />
-    <link rel="icon" href="/icons/favicon.ico?v=1.1" />
+    <link rel="icon" href="/icons/favicon.ico" />
     <link
       rel="icon"
       type="image/png"
@@ -27,7 +28,7 @@
       sizes="16x16"
       href="/icons/favicon-16x16.png"
     />
-    <link rel="manifest" href="/site.webmanifest" />
+    
   </head>
   <body class="loading">
     <div class="loader-container">
@@ -74,7 +75,7 @@
         >
       </div>
 
-      <section class="keyboard disable-select">
+      <section class="keyboard disable-select loading">
         <span class="key" id="C"></span>
         <span class="key key-half" id="C#"></span>
         <span class="key" id="D"></span>
@@ -180,8 +181,7 @@
         </button>
       </section>
     </main>
-    <footer class="footer">&copy; Scales 2019</footer>
+    <footer class="footer">&copy; Scales 2020</footer>
 
-    <script src="main.js"></script>
   </body>
 </html>

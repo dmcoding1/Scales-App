@@ -1,3 +1,6 @@
+import "./styles.scss";
+
+
 window.ondragstart = function() {
   return false;
 };
@@ -53,13 +56,10 @@ window.onload = () => {
     '/sounds/piano/051.wav'  
   ];
 
-  let time = new Date();
 
   Promise.all(
     sounds.map(sound => {
-      if (new Date().getTime() - time > 4000) {
-        document.body.classList.add("error");
-      }
+      
       return new Promise((resolve, reject) => {
         const audio = new Audio();
         audio.addEventListener('canplaythrough', resolve);
@@ -68,7 +68,6 @@ window.onload = () => {
     })
   ).then(() => {
     document.body.classList.remove("loading");
-    console.log("Success.");
   }).catch(err => {
     document.body.classList.add("error");
     console.error(err);
@@ -85,6 +84,7 @@ window.onload = () => {
   const guitarNotesArr = Array.from(document.getElementsByClassName('note'));
   const pianoBtn = document.querySelector('#btn-piano');
   const guitarBtn = document.querySelector('#btn-guitar');
+  let currVal = "C";
 
   const majorScales = {
     'C': {
@@ -501,6 +501,14 @@ window.onload = () => {
   
 }
 
-
+if ('serviceWorker' in navigator) {
+  window.addEventListener('load', () => {
+    navigator.serviceWorker.register('/sw.js').then(registration => {
+      console.log('SW registered: ', registration);
+    }).catch(registrationError => {
+      console.log('SW registration failed: ', registrationError);
+    });
+  });
+}
 
 
