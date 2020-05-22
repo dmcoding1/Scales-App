@@ -1,7 +1,15 @@
 <!DOCTYPE html>
 <html lang="en">
   <head>
-    <style>html { background-color: #fcefef;} html * { opacity: 0; visibility: hidden;} </style>
+    <style>
+      html {
+        background-color: #fcefef;
+      }
+      html * {
+        opacity: 0;
+        visibility: hidden;
+      }
+    </style>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Scales App</title>
@@ -9,7 +17,7 @@
       name="description"
       content="App displays notes, chords with keyboard and guitar sounds of selected music scale."
     />
-    <link rel="manifest" href="manifest.json">
+    <link rel="manifest" href="manifest.json" />
     <link
       rel="apple-touch-icon"
       sizes="180x180"
@@ -28,15 +36,13 @@
       sizes="16x16"
       href="/icons/favicon-16x16.png"
     />
-    
   </head>
   <body class="loading">
     <div class="loader-container">
       <div class="loader">
         <div class="loader__item"></div>
       </div>
-    </div>  
-    <div class="error-msg">Something went wrong. Try to reload the page.</div>  
+    </div>
     <header class="header-text">
       <h1>Select your scale</h1>
     </header>
@@ -44,18 +50,18 @@
       <div id="pointer"></div>
       <section class="circle" id="circle">
         <div class="circle-items">
-          <span class="circle-item" role="button" tabindex=0>C</span>
-          <span class="circle-item" role="button" tabindex=0>C#</span>
-          <span class="circle-item" role="button" tabindex=0>D</span>
-          <span class="circle-item" role="button" tabindex=0>D#</span>
-          <span class="circle-item" role="button" tabindex=0>E</span>
-          <span class="circle-item" role="button" tabindex=0>F</span>
-          <span class="circle-item" role="button" tabindex=0>F#</span>
-          <span class="circle-item" role="button" tabindex=0>G</span>
-          <span class="circle-item" role="button" tabindex=0>G#</span>
-          <span class="circle-item" role="button" tabindex=0>A</span>
-          <span class="circle-item" role="button" tabindex=0>A#</span>
-          <span class="circle-item" role="button" tabindex=0>B</span>
+          <span class="circle-item" role="button" tabindex="0">C</span>
+          <span class="circle-item" role="button" tabindex="0">C#</span>
+          <span class="circle-item" role="button" tabindex="0">D</span>
+          <span class="circle-item" role="button" tabindex="0">D#</span>
+          <span class="circle-item" role="button" tabindex="0">E</span>
+          <span class="circle-item" role="button" tabindex="0">F</span>
+          <span class="circle-item" role="button" tabindex="0">F#</span>
+          <span class="circle-item" role="button" tabindex="0">G</span>
+          <span class="circle-item" role="button" tabindex="0">G#</span>
+          <span class="circle-item" role="button" tabindex="0">A</span>
+          <span class="circle-item" role="button" tabindex="0">A#</span>
+          <span class="circle-item" role="button" tabindex="0">B</span>
         </div>
       </section>
       <div class="scale-btns">
@@ -76,6 +82,12 @@
       </div>
 
       <section class="keyboard disable-select loading">
+        <div class="loader-container">
+          <div class="loader">
+            <div class="loader__item"></div>
+          </div>
+        </div>
+        <div class="error-msg">Something went wrong. Try to reload the page.</div>
         <span class="key" id="C"></span>
         <span class="key key-half" id="C#"></span>
         <span class="key" id="D"></span>
@@ -100,7 +112,13 @@
         >
       </div>
 
-      <section class="guitar">
+      <section class="guitar loading">
+        <div class="loader-container">
+          <div class="loader">
+            <div class="loader__item"></div>
+          </div>
+        </div>
+        <div class="error-msg">Something went wrong. Try to reload the page.</div>
         <div class="guitar-neck">
           <div class="guitar-frets-nums">
             <span class="guitar-fret-num">0</span>
@@ -176,12 +194,11 @@
             </div>
           </div>
         </div>
-        <button class="btn clear-btn disable-select" id="btn-guitar">
-          Clear frets
-        </button>
       </section>
+      <button class="btn clear-btn disable-select" id="btn-guitar">
+        Clear frets
+      </button>
     </main>
-    <footer class="footer">&copy; Scales 2020</footer>
-
+    <footer class="footer">&copy; Scales <span class="footer-date"></span></footer>
   </body>
 </html>
