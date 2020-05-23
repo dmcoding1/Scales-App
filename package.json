@@ -1,7 +1,7 @@
 {
   "name": "scales",
   "version": "1.0.0",
-  "description": "music scales learning app",
+  "description": "musical scales learning app",
   "main": "main.js",
   "scripts": {
     "build": "webpack",
