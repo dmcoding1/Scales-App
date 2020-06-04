@@ -151,7 +151,7 @@ body {
 
 .text-container {
   opacity: 0;
-  animation: appear 1s $animation-time ease forwards; 
+  animation: appear 1s $animation-time ease forwards;
 }
 
 .btn {
@@ -166,9 +166,10 @@ body {
   cursor: pointer;
   transition: opacity 0.3 ease;
   opacity: 0;
-  animation: appear 1s $animation-time ease forwards; 
+  animation: appear 1s $animation-time ease forwards;
 
-  &:hover, &:focus {
+  &:hover,
+  &:focus {
     opacity: 0.8;
   }
 }
@@ -191,6 +192,12 @@ body {
   margin: 2rem auto;
   width: 100%;
   font-size: 2.4rem;
+}
+
+.piano-instruction {
+  display: block;
+  font-size: 2.4rem;
+  margin-bottom: 2rem;
 }
 
 .chord-progression {
@@ -222,6 +229,10 @@ body {
 @media (max-width: 700px) {
   html {
     font-size: 50%;
+  }
+
+  .piano-instruction {
+    display: none;
   }
 }
 
